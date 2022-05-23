@@ -4,6 +4,7 @@ import lol.bai.megane.api.provider.FluidInfoProvider;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRenderHandler;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.text.Text;
 
@@ -11,10 +12,12 @@ import net.minecraft.text.Text;
 public class FabricFluidInfoProvider extends FluidInfoProvider<Fluid> {
 
     FluidVariantRenderHandler handler;
+    FluidVariant variant;
 
     @Override
     protected void init() {
         handler = FluidVariantRendering.getHandler(getObject());
+        variant = handler != null ? FluidVariant.of(getObject(), getNbt()) : null;
     }
 
     @Override
@@ -24,12 +27,12 @@ public class FabricFluidInfoProvider extends FluidInfoProvider<Fluid> {
 
     @Override
     public int getColor() {
-        return handler.getColor(FluidVariant.of(getObject()), getWorld(), getPos());
+        return handler.getColor(variant, getWorld(), getPos());
     }
 
     @Override
     public Text getName() {
-        return handler.getName(FluidVariant.of(getObject()));
+        return FluidVariantAttributes.getName(variant);
     }
 
 }
