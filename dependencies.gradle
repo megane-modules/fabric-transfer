@@ -1,7 +1,7 @@
 dependencies {
-    modImplementation meganeModule("api:7.1.0")
-    modRuntimeOnly meganeModule("runtime:7.2.0")
-    modRuntimeOnly meganeModule("vanilla:7.1.0")
+    modImplementation meganeModule("api:7.2.1")
+    modRuntimeOnly meganeModule("runtime:7.3.1")
+    //modRuntimeOnly meganeModule("vanilla:7.1.0")
 
-    modImplementation fabricApi.module("fabric-transfer-api-v1", "0.47.10+1.18.2")
+    modImplementation fabricApi.module("fabric-transfer-api-v1", "0.53.0+1.18.2")
 }
